@@ -1,0 +1,51 @@
+h1
+{
+    font-size: 50px;
+}
+
+#divform
+{
+    padding:10px;
+}
+
+#country
+{
+    padding:10px;
+    text-align: center;
+    font-size: 50px;
+    font-style: bold;
+}
+
+
+#confirmed
+{
+    padding:10px;
+    text-align: center;
+    font-size: 30px;
+    border-bottom-style: solid;
+    border-bottom-color: blue;
+    border-width: 10px;
+}
+
+
+#deaths
+{
+    padding:10px;
+    text-align: center;
+    font-size: 30px;
+    border-bottom-style: solid;
+    border-bottom-color: red;
+    border-width: 10px;
+
+}
+
+#recovered
+{
+    padding:10px;
+    text-align: center;
+    font-size: 30px;
+    border-bottom-style: solid;
+    border-bottom-color: green;
+    border-width: 10px;
+
+}

@@ -1,0 +1,23 @@
+from django import forms
+from datas.controllers.Getdatas import get_all_countries
+
+
+class TestForm(forms.Form):
+    name = forms.CharField(label='Your name', max_length=255)
+    email = forms.EmailField(label='Your email', max_length=255, required=False)
+
+
+LIST_COUNTRIES = get_all_countries()
+
+
+class CountryForm(forms.Form):
+    country = forms.CharField(label='Select a country : ',
+                              widget=forms.Select(
+                                  choices=LIST_COUNTRIES,
+                                  attrs={'style':
+                                'width:200px;height:30px; font-size: 15px;'},
+                              ))
+
+
+class CountryFormAjax(forms.Form):
+    country = forms.CharField(label='Your country', max_length=255)

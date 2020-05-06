@@ -1,0 +1,58 @@
+{% extends 'datas/base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+
+<div class="container" style="background-color: #E6D5D5">
+  <div id="country">
+  World
+</div>
+  <div class="row">
+    <div class="col-sm-4" id='confirmed'>
+      Confirmed
+      <br>
+      {{ world_confirmed }}
+    </div>
+    <div class="col-sm-4" id='deaths'>
+      Deaths
+      <br>
+      {{ world_deaths }}
+    </div>
+    <div class="col-sm-4" id='recovered'>
+      Recovered
+      <br>
+      {{ world_recovered }}
+    </div>
+  </div>
+</div>
+
+<br>
+<br>
+
+<div id="divform">
+<form method="POST" id="post-form-list" style="text-align:center;">
+  {% csrf_token %}
+  {% crispy form %}
+</form>
+  </div>
+<div class="container">
+<canvas id="myChart" width="100" height="50"></canvas>
+</div>
+<br>
+<div class="container">
+<p id="p1"></p>
+
+  </div>
+
+
+
+
+
+<br>
+<br>
+<br>
+
+
+{% endblock %}
