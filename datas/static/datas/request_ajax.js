@@ -61,7 +61,7 @@ $(document).ready(function(){
                 var myChart = new Chart(ctx, {
                   type: 'bar',
                   data: {
-                      labels: json.list_cases,
+                      labels: json.list_dates,
                       datasets: [
                       {
                           label: 'Conutry datas',
