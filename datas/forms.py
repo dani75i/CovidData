@@ -1,5 +1,5 @@
 from django import forms
-from datas.controllers.Getdatas import get_all_countries
+from datas.controllers.Getdatas import *
 
 
 class TestForm(forms.Form):
@@ -7,7 +7,8 @@ class TestForm(forms.Form):
     email = forms.EmailField(label='Your email', max_length=255, required=False)
 
 
-LIST_COUNTRIES = get_all_countries()
+# LIST_COUNTRIES = get_all_countries()
+LIST_COUNTRIES = postman_get_all_countries()
 
 
 class CountryForm(forms.Form):

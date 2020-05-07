@@ -44,13 +44,6 @@ $(document).ready(function(){
                   data: {
                       labels: ["Confirmed", "Deaths", "Recovered"],
                       datasets: [
-//                      {
-//                          label: 'World datas',
-//                          data: [
-//                          json.world_confirmed,
-//                          json.world_deaths,
-//                          json.world_recovered ]
-//                      },
                       {
                           label: 'Conutry datas',
                           backgroundColor: ["blue", "red", "green"],
@@ -58,6 +51,21 @@ $(document).ready(function(){
                           json.confirmed,
                           json.deaths,
                           json.recovered ]
+                       }
+                      ]
+                  }
+              })
+
+              var ctx = document.getElementById("myChart2");
+                console.log(json.list_dates)
+                var myChart = new Chart(ctx, {
+                  type: 'bar',
+                  data: {
+                      labels: json.list_cases,
+                      datasets: [
+                      {
+                          label: 'Conutry datas',
+                          data: json.list_cases
                        }
                       ]
                   }
