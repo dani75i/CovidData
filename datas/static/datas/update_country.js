@@ -1,11 +1,7 @@
 $(document).ready(function(){
-
     $("#post-form-list").change(function(){
-        var country = $('#post-form-list :selected').text()
-        $("#country").text(country);
-    })
-
-    $("#post-form-list").change(function(){
+        var positionhtml = $("html").scrollTop()
+         console.log(positionhtml)
         $.ajax({
             type:'POST',
             url:'',
@@ -61,6 +57,7 @@ $(document).ready(function(){
                       ]
                   }
                 })
+                $("html").scrollTop(positionhtml)
             }
         })
         })
