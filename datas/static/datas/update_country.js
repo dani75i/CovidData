@@ -9,6 +9,8 @@ $(document).ready(function(){
                 action: 'post'
             },
             success: function(json){
+                $("#country").text($('#post-form-list :selected').text());
+
                 $("#confirmed").text(json.confirmed);
                 $("#confirmed").each(function () {
                     $(this).prop('Counter',0).animate({
