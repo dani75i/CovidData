@@ -1,66 +1,128 @@
-{% extends 'datas/base.html' %}
-
-{% block content %}
+<!DOCTYPE html>
+{% load static %}
 {% load crispy_forms_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--<link rel="stylesheet" href="{% static 'datas/css/style.css' %}">-->
+    <script src="{% static 'datas/update_country.js' %}"></script>
 
+</head>
+<body>
 
+<div class="container">
+    <div class="jumbotron" style="text-align: center">
+        <h1>Covid-19 Datas </h1>
+        <p>Give you some datas in live !</p>
+    </div>
 
-<div class="container" style="background-color: #E6D5D5">
-  <div id="country">
-  World
-</div>
-  <div class="row">
-    <div class="col-sm-4" id='confirmed'>
-      Confirmed
-      <br>
-      {{ world_confirmed }}
+    <div id="divform">
+      <form method="POST" id="post-form-list" style="text-align:center;">
+        {% csrf_token %}
+        {% crispy form %}
+      </form>
     </div>
-    <div class="col-sm-4" id='deaths'>
-      Deaths
-      <br>
-      {{ world_deaths }}
+
+    <br>
+    <div style="text-align: center">
+        <h2 id="country">France</h2>
     </div>
-    <div class="col-sm-4" id='recovered'>
-      Recovered
-      <br>
-      {{ world_recovered }}
+
+    <br>
+
+    <div class="row">
+        <div class="col-4">
+            <div id="div1" style="text-align: center">
+                <h5>Confirmed</h5>
+                <p id="confirmed">{{ france_confirmed }}</p>
+            </div>
+        </div>
+        <div class="col-4">
+            <div style="text-align: center">
+                <h5>Deaths</h5>
+                <p id="deaths">{{ france_deaths }}</p>
+            </div>
+        </div>
+        <div class="col-4">
+            <div style="text-align: center">
+                <h5>Recovered</h5>
+                <p id="recovered">{{ france_recovered }}</p>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <br>
-<br>
 
-<div id="divform">
-  <form method="POST" id="post-form-list" style="text-align:center;">
-    {% csrf_token %}
-    {% crispy form %}
-  </form>
-</div>
-
-<br>
 
 <div class="container">
   <canvas id="myChart" width="100" height="50"></canvas>
   <br>
   <canvas id="myChart2" width="100" height="50"></canvas>
-  <br>
-  <canvas id="myChart3" width="100" height="50"></canvas>
+<script>
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: ["country"],
+          datasets: [
+          {
+              label: 'Confirmed',
+              backgroundColor: ["blue"],
+              data: [
+              {{ france_confirmed }}]
+           },
+           {
+              label: 'Deaths',
+              backgroundColor: ["red"],
+              data: [
+              {{ france_deaths }}]
+           },
+           {
+              label: 'Recovered',
+              backgroundColor: ["green"],
+              data: [
+              {{ france_recovered }}]
+           }
+          ]
+      }
+    })
+
+    var ctx = document.getElementById("myChart2");
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          labels: {{ france_dates_list|safe }},
+          datasets: [
+           {
+              label: 'Deaths',
+              backgroundColor: ["red"],
+              data: {{ france_deaths_list }}
+           },
+          ]
+      }
+    })
+
+</script>
 </div>
 
 <br>
-
-<div class="container">
-  <p id="p1"></p>
-</div>
-
-
-
-
-
-<br>
-<br>
 <br>
 
-
-{% endblock %}
+</body>
+</html>

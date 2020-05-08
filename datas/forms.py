@@ -17,7 +17,8 @@ class CountryForm(forms.Form):
                                   choices=LIST_COUNTRIES,
                                   attrs={'style':
                                 'width:200px;height:30px; font-size: 15px;'},
-                              ))
+                              ),
+                              initial="France")
 
 
 class CountryFormAjax(forms.Form):

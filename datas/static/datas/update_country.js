@@ -1,9 +1,11 @@
-
-
-
 $(document).ready(function(){
-   $("#post-form-list").change(function(){
-        $("#p1").empty();
+
+    $("#post-form-list").change(function(){
+        var country = $('#post-form-list :selected').text()
+        $("#country").text(country);
+    })
+
+    $("#post-form-list").change(function(){
         $.ajax({
             type:'POST',
             url:'',
@@ -13,43 +15,21 @@ $(document).ready(function(){
                 action: 'post'
             },
             success: function(json){
-                $("#p1").append(
-
-                "<div id='country'>" +
-                json.country +
-                "</div>" + "<br>" +
-
-                "<div class='container'>" +
-                      "<div class='row'>" +
-                        "<div class='col-sm-4' id='confirmed'>" +
-                          "<h3>Confirmed</h3>" +
-                          "<p>" + json.confirmed + "</p>" +
-                        "</div>" +
-                        "<div class='col-sm-4' id='deaths'>" +
-                          "<h3>Deaths</h3>" +
-                          "<p>" + json.deaths + "</p>" +
-                        "</div>" +
-                        "<div class='col-sm-4' id='recovered'>" +
-                          "<h3>Recovered</h3>" +
-                          "<p>" + json.recovered + "</p>" +
-                        "</div>" + "<br>" +
-                       "</div>" +
-                "</div>" + "<br>"
-                )
-                console.log(json.confirmed)
+                $("#confirmed").text(json.confirmed);
+                $("#deaths").text(json.deaths);
+                $("#recovered").text(json.recovered);
 
                 var ctx = document.getElementById("myChart");
                 var myChart = new Chart(ctx, {
                   type: 'bar',
                   data: {
-//                      labels: ["Confirmed", "Deaths", "Recovered"],
                       labels: ["country"],
                       datasets: [
                       {
                           label: 'Confirmed',
                           backgroundColor: ["blue"],
                           data: [
-                          json.confirmed, ]
+                          json.confirmed]
                        },
                        {
                           label: 'Deaths',
@@ -65,10 +45,9 @@ $(document).ready(function(){
                        }
                       ]
                   }
-              })
+                })
 
-              var ctx = document.getElementById("myChart2");
-                console.log(json.list_dates)
+                var ctx = document.getElementById("myChart2");
                 var myChart = new Chart(ctx, {
                   type: 'line',
                   data: {
@@ -81,12 +60,12 @@ $(document).ready(function(){
                        },
                       ]
                   }
-              })
-
+                })
             }
+        })
+        })
 
-        });
+
+
 
 })
-})
-
