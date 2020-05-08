@@ -1,7 +1,5 @@
 $(document).ready(function(){
     $("#post-form-list").change(function(){
-        var positionhtml = $("html").scrollTop()
-         console.log(positionhtml)
         $.ajax({
             type:'POST',
             url:'',
@@ -12,8 +10,43 @@ $(document).ready(function(){
             },
             success: function(json){
                 $("#confirmed").text(json.confirmed);
+                $("#confirmed").each(function () {
+                    $(this).prop('Counter',0).animate({
+                        Counter: $(this).text()
+                    }, {
+                        duration: 2000,
+                        easing: 'swing',
+                        step: function (now) {
+                            $(this).text(Math.ceil(now));
+                        }
+                    });
+                });
+
                 $("#deaths").text(json.deaths);
+                $("#deaths").each(function () {
+                    $(this).prop('Counter',0).animate({
+                        Counter: $(this).text()
+                    }, {
+                        duration: 2000,
+                        easing: 'swing',
+                        step: function (now) {
+                            $(this).text(Math.ceil(now));
+                        }
+                    });
+                });
+
                 $("#recovered").text(json.recovered);
+                $("#recovered").each(function () {
+                    $(this).prop('Counter',0).animate({
+                        Counter: $(this).text()
+                    }, {
+                        duration: 2000,
+                        easing: 'swing',
+                        step: function (now) {
+                            $(this).text(Math.ceil(now));
+                        }
+                    });
+                });
 
                 var ctx = document.getElementById("myChart");
                 var myChart = new Chart(ctx, {
@@ -57,7 +90,7 @@ $(document).ready(function(){
                       ]
                   }
                 })
-                $("html").scrollTop(positionhtml)
+                $("html").scrollTop(166)
             }
         })
         })
