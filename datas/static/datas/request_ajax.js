@@ -42,15 +42,34 @@ $(document).ready(function(){
                 var myChart = new Chart(ctx, {
                   type: 'bar',
                   data: {
-                      labels: ["Confirmed", "Deaths", "Recovered"],
+//                      labels: ["Confirmed", "Deaths", "Recovered"],
+                      labels: ["country"],
                       datasets: [
+//                      {
+//                          label: 'Confirmed',
+//                          backgroundColor: ["blue", "red", "green"],
+//                          data: [
+//                          json.confirmed,
+//                          json.deaths,
+//                          json.recovered ]
+//                       },
                       {
-                          label: 'Conutry datas',
-                          backgroundColor: ["blue", "red", "green"],
+                          label: 'Confirmed',
+                          backgroundColor: ["blue"],
                           data: [
-                          json.confirmed,
-                          json.deaths,
-                          json.recovered ]
+                          json.confirmed, ]
+                       },
+                       {
+                          label: 'Deaths',
+                          backgroundColor: ["red"],
+                          data: [
+                          json.deaths]
+                       },
+                       {
+                          label: 'Recovered',
+                          backgroundColor: ["green"],
+                          data: [
+                          json.recovered]
                        }
                       ]
                   }
@@ -59,14 +78,25 @@ $(document).ready(function(){
               var ctx = document.getElementById("myChart2");
                 console.log(json.list_dates)
                 var myChart = new Chart(ctx, {
-                  type: 'bar',
+                  type: 'line',
                   data: {
                       labels: json.list_dates,
                       datasets: [
-                      {
-                          label: 'Conutry datas',
-                          data: json.list_cases
-                       }
+//                      {
+//                          label: 'Confirmed',
+//                          backgroundColor: ["blue"],
+//                          data: json.list_confirmed
+//                       },
+                       {
+                          label: 'Deaths',
+                          backgroundColor: ["red"],
+                          data: json.list_deaths
+                       },
+//                       {
+//                          label: 'Recovered',
+//                          backgroundColor: ["green"],
+//                          data: json.list_recovered
+//                       },
                       ]
                   }
               })

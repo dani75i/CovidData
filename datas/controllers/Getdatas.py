@@ -36,15 +36,35 @@ def get_world_datas():
 
 
 def postman_get_data_from_beginning(country):
-    url = "https://api.covid19api.com/total/dayone/country/" + country + "/status/confirmed"
-    response = requests.get(url=url).json()
-    list_cases = []
+    list_confirmed = []
+    list_deaths = []
+    list_recovered = []
     list_dates = []
-    for case in response:
-        list_cases.append(case["Cases"])
+
+    url_confirmed = "https://api.covid19api.com/total/dayone/country/" + country + "/status/confirmed"
+    response_confirmed = requests.get(url=url_confirmed).json()
+    for case in response_confirmed:
+        list_confirmed.append(case["Cases"])
         list_dates.append(case["Date"])
 
-    return list_dates, list_cases
+    url_deaths = "https://api.covid19api.com/total/dayone/country/" + country + "/status/deaths"
+    response_recovered = requests.get(url=url_deaths).json()
+    for case in response_recovered:
+        list_deaths.append(case["Cases"])
+
+    url_recovered = "https://api.covid19api.com/total/dayone/country/" + country + "/status/recovered"
+    response_recovered = requests.get(url=url_recovered).json()
+    for case in response_recovered:
+        list_recovered.append(case["Cases"])
+
+
+    list_deaths_not_cumulated = []
+    for case in range(len(list_deaths) - 1):
+        print(case, list_deaths[case], list_deaths[case + 1])
+        list_deaths_not_cumulated.append(list_deaths[case + 1] - list_deaths[case])
+    list_deaths_not_cumulated.insert(0, 0)
+
+    return list_dates, list_confirmed, list_deaths_not_cumulated, list_recovered
 
 
 def postman_get_all_countries():
@@ -69,3 +89,6 @@ def postman_get_data_by_countries(country):
     }
 
     return information
+
+
+print(postman_get_data_from_beginning("france"))

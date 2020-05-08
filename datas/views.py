@@ -25,7 +25,9 @@ def post_ajax(request):
 
             histogramme = postman_get_data_from_beginning(country)
             response_data["list_dates"] = histogramme[0]
-            response_data["list_cases"] = histogramme[1]
+            response_data["list_confirmed"] = histogramme[1]
+            response_data["list_deaths"] = histogramme[2]
+            response_data["list_recovered"] = histogramme[3]
 
             return JsonResponse(response_data)
     else:
