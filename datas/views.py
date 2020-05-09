@@ -23,6 +23,7 @@ def get_value_covid_by_country(request):
             response_data["list_confirmed"] = histogramme[1]
             response_data["list_deaths"] = histogramme[2]
             response_data["list_recovered"] = histogramme[3]
+            response_data["france_last_day_deaths"] = histogramme[4]
 
             return JsonResponse(response_data)
 
@@ -37,6 +38,7 @@ def get_value_covid_by_country(request):
         histogramme = postman_get_data_from_beginning("France")
         france_dates_list = histogramme[0]
         france_deaths_list = histogramme[2]
+        france_last_day_deaths = histogramme[4]
 
     return render(request, 'datas/home.html',
                   {"form": form,
@@ -44,5 +46,6 @@ def get_value_covid_by_country(request):
                    "france_deaths": france_deaths,
                    "france_recovered": france_recovered,
                    "france_dates_list": france_dates_list,
-                   "france_deaths_list": france_deaths_list
+                   "france_deaths_list": france_deaths_list,
+                   "france_last_day_deaths": france_last_day_deaths,
                    })

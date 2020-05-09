@@ -45,7 +45,7 @@ def postman_get_data_from_beginning(country):
     response_confirmed = requests.get(url=url_confirmed).json()
     for case in response_confirmed:
         list_confirmed.append(case["Cases"])
-        list_dates.append(case["Date"][:10])
+        list_dates.append(case["Date"][5:10])
 
     url_deaths = "https://api.covid19api.com/total/dayone/country/" + country + "/status/deaths"
     response_recovered = requests.get(url=url_deaths).json()
@@ -62,7 +62,10 @@ def postman_get_data_from_beginning(country):
         list_deaths_not_cumulated.append(list_deaths[case + 1] - list_deaths[case])
     list_deaths_not_cumulated.insert(0, 0)
 
-    return list_dates, list_confirmed, list_deaths_not_cumulated, list_recovered
+    number_deaths_last_day = list_deaths_not_cumulated[-1]
+
+    return list_dates, list_confirmed, list_deaths_not_cumulated, \
+           list_recovered, number_deaths_last_day
 
 
 def postman_get_all_countries():

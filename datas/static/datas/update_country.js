@@ -37,6 +37,19 @@ $(document).ready(function(){
                     });
                 });
 
+                $("#last_day_deaths").text(json.france_last_day_deaths);
+                $("#last_day_deaths").each(function () {
+                    $(this).prop('Counter',0).animate({
+                        Counter: $(this).text()
+                    }, {
+                        duration: 2000,
+                        easing: 'swing',
+                        step: function (now) {
+                            $(this).text(Math.ceil(now));
+                        }
+                    });
+                });
+
                 $("#recovered").text(json.recovered);
                 $("#recovered").each(function () {
                     $(this).prop('Counter',0).animate({
@@ -53,6 +66,12 @@ $(document).ready(function(){
                 var ctx = document.getElementById("myChart");
                 var myChart = new Chart(ctx, {
                   type: 'bar',
+                  options: {
+                        title: {
+                            display: true,
+                            text: 'Confirmed vs Deaths vs Recovered'
+                        }
+                    },
                   data: {
                       labels: ["country"],
                       datasets: [
@@ -81,6 +100,12 @@ $(document).ready(function(){
                 var ctx = document.getElementById("myChart2");
                 var myChart = new Chart(ctx, {
                   type: 'line',
+                  options: {
+                        title: {
+                            display: true,
+                            text: 'New deaths'
+                        }
+                    },
                   data: {
                       labels: json.list_dates,
                       datasets: [
