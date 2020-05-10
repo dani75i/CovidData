@@ -110,10 +110,11 @@
 
 
 <div class="container">
-    <div class="w3-card-4">
-        <br>
+    <div class="w3-card-4" style="height:250px">
   <canvas id="myChart"></canvas>
-        <br>
+    </div>
+    <br>
+    <div class="w3-card-4" style="height:250px">
   <canvas id="myChart2"></canvas>
         <br>
     </div>
@@ -124,7 +125,7 @@
       type: 'bar',
       options: {
         responsive: true,
-        maintainAspectRatio:true,
+        maintainAspectRatio:false,
         title: {
             display: true,
             text: 'Confirmed vs Deaths vs Recovered'
@@ -159,6 +160,8 @@
     var myChart = new Chart(ctx, {
       type: 'line',
       options: {
+           responsive: true,
+            maintainAspectRatio:false,
         title: {
             display: true,
             text: 'New deaths'
