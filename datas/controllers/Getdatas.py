@@ -64,6 +64,10 @@ def postman_get_data_from_beginning(country):
 
     number_deaths_last_day = list_deaths_not_cumulated[-1]
 
+    print(list_dates)
+    print(len(list_dates))
+
+
     return list_dates, list_confirmed, list_deaths_not_cumulated, \
            list_recovered, number_deaths_last_day
 
@@ -96,4 +100,4 @@ def postman_get_data_by_countries(country):
     return information
 
 
-print(postman_get_data_from_beginning("france"))
+# print(postman_get_data_from_beginning("france"))

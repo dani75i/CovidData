@@ -69,7 +69,9 @@ $(document).ready(function(){
                   options: {
                         title: {
                             display: true,
-                            text: 'Confirmed vs Deaths vs Recovered'
+                            text: 'Confirmed vs Deaths vs Recovered',
+                            fontSize: 15,
+                            fontColor: "#111"
                         }
                     },
                   data: {
@@ -103,7 +105,9 @@ $(document).ready(function(){
                   options: {
                         title: {
                             display: true,
-                            text: 'New deaths'
+                            text: 'New deaths',
+                            fontSize: 15,
+                            fontColor: "#111"
                         }
                     },
                   data: {
@@ -138,7 +142,7 @@ $(document).ready(function(){
                        {
                           label: 'Deaths',
                           backgroundColor: ["red"],
-                          data: [10,90]
+                          data: [json.death_rate,100 - json.death_rate]
                        },
                       ]
                   }
