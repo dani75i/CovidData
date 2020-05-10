@@ -83,10 +83,14 @@ def postman_get_data_by_countries(country):
     url = "https://api.covid19api.com/total/country/" + country
     response = requests.get(url=url).json()[-1]
 
+    death_rate = (int(response["Deaths"]) / int(response["Confirmed"])) * 100
+    death_rate = "%.2f" % death_rate
+
     information = {
         "confirmed": response["Confirmed"],
         "recovered": response["Recovered"],
         "deaths": response["Deaths"],
+        "death_rate": death_rate,
     }
 
     return information

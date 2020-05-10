@@ -34,7 +34,7 @@
 <div class="container">
     <div class="jumbotron" style="text-align: center">
         <h1>Covid-19 Datas </h1>
-        <p>Give you some datas in live !</p>
+        <!--<p>Give you some datas in live !</p>-->
     </div>
 
       <form method="POST" id="post-form-list"  style="text-align: center">
@@ -48,38 +48,13 @@
         <h2 id="country">France</h2>
     </div>
 
-    <!--<div class="row">-->
-        <!--<div class="col-4">-->
-            <!--<div id="div1" style="text-align: center;">-->
-                <!--<h5>Confirmed</h5>-->
-                <!--<p id="confirmed">{{ france_confirmed }}</p>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="col-4">-->
-            <!--<div style="text-align: center">-->
-                <!--<h5>Deaths</h5>-->
-                <!--<p id="deaths">{{ france_deaths }}</p>-->
-                <!--<p>-->
-                    <!--(+ <span id="last_day_deaths">{{ france_last_day_deaths }}</span>)-->
-                <!--</p>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="col-4">-->
-            <!--<div style="text-align: center">-->
-                <!--<h5>Recovered</h5>-->
-                <!--<p id="recovered">{{ france_recovered }}</p>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
-
 <br>
-<div class="w3-container">
-  <div class="w3-card-4">
+<div class="w3-container ">
+  <div class="w3-card-4 ">
     <header class="w3-container w3-blue">
       <h6>Confirmed</h6>
     </header>
-    <div class="w3-container">
+    <div class="w3-container ">
       <strong id="confirmed">{{ france_confirmed }}</strong>
     </div>
   </div>
@@ -110,13 +85,22 @@
 
 
 <div class="container">
-    <div class="w3-card-4" style="height:250px">
+
+    <div class="w3-card-4 w3-border w3-round-xlarge" style="height:250px; padding: 10px;">
   <canvas id="myChart"></canvas>
     </div>
+
     <br>
-    <div class="w3-card-4" style="height:250px">
+    <div class="w3-card-4 w3-border w3-round-xlarge" style="height:250px; padding: 10px;">
   <canvas id="myChart2"></canvas>
         <br>
+    </div>
+
+    <br>
+    <div class="w3-card-4 w3-border w3-round-xlarge" style="height:250px; padding: 20px;">
+  <canvas id="myChart3"></canvas>
+        <br>
+
     </div>
 
 <script>
@@ -129,10 +113,11 @@
         title: {
             display: true,
             text: 'Confirmed vs Deaths vs Recovered'
-        }
+        },
+
     },
       data: {
-          labels: ["country"],
+          labels: [],
           datasets: [
           {
               label: 'Confirmed',
@@ -162,11 +147,11 @@
       options: {
            responsive: true,
             maintainAspectRatio:false,
-        title: {
-            display: true,
-            text: 'New deaths'
-        }
-    },
+            title: {
+                display: true,
+                text: 'Deaths / day'
+                }
+            },
       data: {
           labels: {{ france_dates_list|safe }},
           datasets: [
@@ -178,6 +163,34 @@
           ]
       }
     })
+
+    var ctx = document.getElementById("myChart3");
+    var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      options: {
+            title: {
+      display: true,
+      position: "top",
+      text: {{ france_death_rate }}+ " %",
+      fontSize: 15,
+      fontColor: "#111"
+    },
+           responsive: true,
+            maintainAspectRatio:false,
+            },
+      data: {
+          labels: ["Mortality Rate"],
+          datasets: [
+           {
+              label: 'Deaths',
+              backgroundColor: ["red"],
+              data: [10,90]
+           },
+          ]
+      }
+    })
+
+
 
 </script>
 </div>

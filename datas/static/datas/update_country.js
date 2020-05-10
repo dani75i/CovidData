@@ -73,7 +73,7 @@ $(document).ready(function(){
                         }
                     },
                   data: {
-                      labels: ["country"],
+                      labels: [],
                       datasets: [
                       {
                           label: 'Confirmed',
@@ -117,6 +117,33 @@ $(document).ready(function(){
                       ]
                   }
                 })
+
+                var ctx = document.getElementById("myChart3");
+                var myChart = new Chart(ctx, {
+                  type: 'doughnut',
+                  options: {
+                        title: {
+                  display: true,
+                  position: "top",
+                  text: json.death_rate + " %",
+                  fontSize: 15,
+                  fontColor: "#111"
+                },
+                       responsive: true,
+                        maintainAspectRatio:false,
+                        },
+                  data: {
+                      labels: ["Mortality Rate"],
+                      datasets: [
+                       {
+                          label: 'Deaths',
+                          backgroundColor: ["red"],
+                          data: [10,90]
+                       },
+                      ]
+                  }
+                })
+
                 $("html").scrollTop(166)
             }
         })
