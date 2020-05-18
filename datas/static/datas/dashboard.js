@@ -12,6 +12,7 @@ $(document).ready(function(){
                 $("#country").text($('#post-form-list :selected').text());
 
                 $("#confirmed").text(json.confirmed);
+                console.log(json.confirmed)
                 $("#confirmed").each(function () {
                     $(this).prop('Counter',0).animate({
                         Counter: $(this).text()
@@ -19,7 +20,7 @@ $(document).ready(function(){
                         duration: 2000,
                         easing: 'swing',
                         step: function (now) {
-                            $(this).text(Math.ceil(now));
+                            $(this).text(commaSeparateNumberMath.ceil(now)));
                         }
                     });
                 });

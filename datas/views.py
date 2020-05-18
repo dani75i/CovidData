@@ -65,7 +65,9 @@ def get_value_covid_by_country_dashboard(request):
             result = postman_get_data_by_countries(country)
             response_data['confirmed'] = result["confirmed"]
             response_data['deaths'] = result["deaths"]
+            print(result["deaths"])
             response_data['recovered'] = result["recovered"]
+            print(result["recovered"])
             response_data['death_rate'] = result["death_rate"]
 
             histogramme = postman_get_data_from_beginning(country)
