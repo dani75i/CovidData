@@ -5,4 +5,5 @@ from datas import views
 
 urlpatterns = [
     path('', views.get_value_covid_by_country, name='test'),
+    path('test', views.get_value_covid_by_country_dashboard, name='test'),
 ]

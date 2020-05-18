@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
+<html>
+<title>Covid 19</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="{% static 'datas/dashboard.js' %}"></script>
+
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i> </button>
+  <h3 class="w3-bar-item w3-left">COVID-19 DATA</h3>
+  <br>
+</div>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+  <br>
+  <div class="w3-container">
+    <h3>Dashboard</h3>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  World</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Countries</a>
+    <hr>
+    <br>
+    <div class="card mb-3">
+        <div class="card-header ">
+          <h3>What is Covid ?</h3>
+        </div>
+        <div class="card-body">
+          <p class="card-title">
+            In December 2019, an outbreak of apparently viral pneumonia of
+            unknown etiology emerged in the city of Wuhan, in the Chinese
+            province of Hubei. On January 9, 2020, the Chinese health
+            authorities and the World Health Organization (WHO) officially
+            announced the discovery of a novel coronavirus (first named 2019-nCoV,
+            then officially SARS-CoV-2, which differs from the viruses SARS-CoV,
+            responsible for the SARS outbreak in 2003, and MERS-CoV, responsible
+            for an ongoing outbreak that began in 2012 in the Middle East).
+            This new virus is the pathogen responsible for this infectious
+            respiratory disease called Covid-19 (CoronaVIrus Disease).
+          </p>
+        </div>
+      </div>
+
+    <br>
+    <div class="card mb-3">
+        <div class="card-header ">
+          <h3>Cause ?</h3>
+        </div>
+        <div class="card-body">
+          <p class="card-title">
+            This pneumonia is an infectious disease caused by a virus
+            belonging to the coronavirus family, currently referred
+            to as SARS-CoV-2. The reservoir of the virus is probably
+            of animal origin, even if SARS-CoV-2 is very close to a
+            virus detected in a bat, the animal at the origin of the
+            transmission to humans has not yet been definitely identified.
+          </p>
+        </div>
+      </div>
+    <br>
+  </div>
+    <br>
+</nav>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+  <!-- Header -->
+  <hr>
+  <header class="w3-container" style="padding-top:22px">
+    <h3><b><i class="fa fa-dashboard"></i> World</b></h3>
+  </header>
+  <br>
+
+  <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-third">
+      <div class="card mb-3">
+        <div class="card-header text-white bg-primary">Confirmed</div>
+        <div class="card-body">
+          <h3 class="card-title">{{ world_confirmed }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="w3-third">
+      <div class="card mb-3">
+        <div class="card-header text-white bg-danger">Deaths</div>
+        <div class="card-body">
+          <h3 class="card-title">{{ world_deaths }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="w3-third">
+      <div class="card mb-3">
+        <div class="card-header text-white bg-success">Recovered</div>
+        <div class="card-body">
+          <h3 class="card-title">{{ world_recovered }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <header class="w3-container" style="padding-top:22px">
+    <h3><b><i class="fa fa-dashboard"></i> Countries</b></h3>
+  </header>
+  <br>
+
+  <form method="POST" id="post-form-list"  style="text-align: center">
+        {% csrf_token %}
+        {% crispy form %}
+      </form>
+
+    <div style="text-align: center">
+        <h4 id="country">France</h4>
+    </div>
+
+  <br>
+
+  <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-third">
+      <div class="card mb-3">
+        <div class="card-header text-white bg-primary">Confirmed</div>
+        <div class="card-body">
+          <h3 class="card-title" id="confirmed">{{ france_confirmed }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="w3-third">
+      <div class="card mb-3">
+        <div class="card-header text-white bg-danger">Deaths</div>
+        <div class="card-body">
+          <h3 class="card-title" id="deaths">{{ france_deaths }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="w3-third">
+      <div class="card mb-3">
+        <div class="card-header text-white bg-success">Recovered</div>
+        <div class="card-body">
+          <h3 class="card-title" id="recovered">{{ france_recovered }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <!--<div class="w3-row-padding w3-margin-bottom">-->
+    <!--<div class="w3-half">-->
+      <!--<div class="w3-card-4 w3-border w3-round-xlarge" style="height:300px; padding: 10px;">-->
+        <!--<canvas id="myChart"></canvas>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="w3-half">-->
+      <!--<div class="w3-card-4 w3-border w3-round-xlarge" style="height:300px; padding: 10px;">-->
+        <!--<canvas id="myChart2"></canvas>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <hr>
+  <br>
+
+  <div class="w3-container">
+    <h5>Countries</h5>
+    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+      <tr>
+        <td>United States</td>
+        <td>65%</td>
+      </tr>
+      <tr>
+        <td>UK</td>
+        <td>15.7%</td>
+      </tr>
+      <tr>
+        <td>Russia</td>
+        <td>5.6%</td>
+      </tr>
+      <tr>
+        <td>Spain</td>
+        <td>2.1%</td>
+      </tr>
+      <tr>
+        <td>India</td>
+        <td>1.9%</td>
+      </tr>
+      <tr>
+        <td>France</td>
+        <td>1.5%</td>
+      </tr>
+    </table><br>
+    <button class="w3-button w3-dark-grey">More Countries  <i class="fa fa-arrow-right"></i></button>
+  </div>
+  <hr>
+
+
+  <div class="w3-container">
+
+  <br>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-32 w3-dark-grey text-white">
+    <h4></h4>
+    <h5>Powered by <a href="https://fr.linkedin.com/in/serge-daniel-leite-81758341" target="_blank">Daniel Leite</a></h5>
+  </footer>
+
+  <!-- End page content -->
+</div>
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+
+
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      options: {
+        responsive: true,
+        maintainAspectRatio:false,
+        title: {
+            display: true,
+            text: 'Confirmed vs Deaths vs Recovered',
+            fontSize: 15,
+            fontColor: "#111"
+        },
+
+    },
+      data: {
+          labels: [],
+          datasets: [
+          {
+              label: 'Confirmed',
+              backgroundColor: ["blue"],
+              data: [
+              {{ france_confirmed }}]
+           },
+           {
+              label: 'Deaths',
+              backgroundColor: ["red"],
+              data: [
+              {{ france_deaths }}]
+           },
+           {
+              label: 'Recovered',
+              backgroundColor: ["green"],
+              data: [
+              {{ france_recovered }}]
+           }
+          ]
+      }
+    })
+
+    var ctx = document.getElementById("myChart2");
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      options: {
+           responsive: true,
+            maintainAspectRatio:false,
+            title: {
+                display: true,
+                text: 'Deaths / day',
+                fontSize: 15,
+                fontColor: "#111"
+                }
+            },
+      data: {
+          labels: {{ france_dates_list|safe }},
+          datasets: [
+           {
+              label: 'Deaths',
+              backgroundColor: ["red"],
+              data: {{ france_deaths_list }}
+           },
+          ]
+      }
+    })
+
+    var ctx = document.getElementById("myChart3");
+    var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      options: {
+            title: {
+      display: true,
+      position: "top",
+      text: {{ france_death_rate }}+ " %",
+      fontSize: 15,
+      fontColor: "#111"
+    },
+           responsive: true,
+            maintainAspectRatio:false,
+            },
+      data: {
+          labels: ["Mortality Rate"],
+          datasets: [
+           {
+              label: 'Deaths',
+              backgroundColor: ["red"],
+              data: [{{ france_death_rate }}, 100 - {{ france_death_rate }}]
+           },
+          ]
+      }
+    })
+</script>
+
+</body>
+</html>
