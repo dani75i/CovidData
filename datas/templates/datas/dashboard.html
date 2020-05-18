@@ -36,7 +36,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <!-- Top container -->
 <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
   <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i> </button>
-  <h3 class="w3-bar-item w3-left">COVID-19 DATA</h3>
+  <h3 class="w3-bar-item w3-left" style="font-weight:bold">COVID-19 DATA</h3>
   <br>
 </div>
 
@@ -113,7 +113,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="card mb-3">
         <div class="card-header text-white bg-primary">Confirmed</div>
         <div class="card-body">
-          <h3 class="card-title">{{ world_confirmed }}</h3>
+          <h3 class="card-title">{{ world_confirmed|escape }}</h3>
         </div>
       </div>
     </div>
@@ -195,10 +195,14 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <!--</div>-->
 
   <hr>
-  <br>
 
+    <header class="w3-container" style="padding-top:22px">
+      <h3><b><i class="fa fa-dashboard"></i> Mortality rate</b></h3>
+    </header>
+
+  <br>
   <div class="w3-container">
-    <h5>Countries</h5>
+
     <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
       <tr>
         <td>United States</td>

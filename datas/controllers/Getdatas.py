@@ -27,9 +27,9 @@ def get_world_datas():
     response = requests.get(url=url).json()
 
     information = {
-        "confirmed": response["confirmed"]["value"],
-        "recovered": response["recovered"]["value"],
-        "deaths": response["deaths"]["value"],
+        "confirmed": "{:,}".format(response["confirmed"]["value"]),
+        "recovered": "{:,}".format(response["recovered"]["value"]),
+        "deaths": "{:,}".format(response["deaths"]["value"]),
     }
 
     return information
@@ -91,9 +91,9 @@ def postman_get_data_by_countries(country):
     death_rate = "%.2f" % death_rate
 
     information = {
-        "confirmed": response["Confirmed"],
-        "recovered": response["Recovered"],
-        "deaths": response["Deaths"],
+        "confirmed": "{:,}".format(response["Confirmed"]),
+        "recovered": "{:,}".format(response["Recovered"]),
+        "deaths": "{:,}".format(response["Deaths"]),
         "death_rate": death_rate,
     }
 
