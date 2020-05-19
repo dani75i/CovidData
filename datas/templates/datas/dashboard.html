@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 {% load static %}
 {% load crispy_forms_tags %}
+{% load humanize %}
 <html>
 <title>Covid 19</title>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -113,7 +110,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="card mb-3">
         <div class="card-header text-white bg-primary">Confirmed</div>
         <div class="card-body">
-          <h3 class="card-title">{{ world_confirmed|escape }}</h3>
+          <h3 class="card-title">{{ world_confirmed| intcomma }}</h3>
         </div>
       </div>
     </div>
@@ -121,7 +118,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="card mb-3">
         <div class="card-header text-white bg-danger">Deaths</div>
         <div class="card-body">
-          <h3 class="card-title">{{ world_deaths }}</h3>
+          <h3 class="card-title">{{ world_deaths| intcomma  }}</h3>
         </div>
       </div>
     </div>
@@ -129,7 +126,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="card mb-3">
         <div class="card-header text-white bg-success">Recovered</div>
         <div class="card-body">
-          <h3 class="card-title">{{ world_recovered }}</h3>
+          <h3 class="card-title">{{ world_recovered| intcomma  }}</h3>
         </div>
       </div>
     </div>
@@ -141,10 +138,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </header>
   <br>
 
-  <form method="POST" id="post-form-list"  style="text-align: center">
+  <div class="container">
+    <form method="POST" id="post-form-list"  style="text-align: center">
         {% csrf_token %}
         {% crispy form %}
       </form>
+   </div>
 
     <div style="text-align: center">
         <h4 id="country">France</h4>
@@ -156,8 +155,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <div class="w3-third">
       <div class="card mb-3">
         <div class="card-header text-white bg-primary">Confirmed</div>
-        <div class="card-body">
-          <h3 class="card-title" id="confirmed">{{ france_confirmed }}</h3>
+        <div class="card-body" style="text-align:left">
+          <h3 class="card-title" id="confirmed">{{ france_confirmed| intcomma  }}</h3>
         </div>
       </div>
     </div>
@@ -165,7 +164,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="card mb-3">
         <div class="card-header text-white bg-danger">Deaths</div>
         <div class="card-body">
-          <h3 class="card-title" id="deaths">{{ france_deaths }}</h3>
+          <h3 class="card-title" id="deaths">{{ france_deaths| intcomma  }}</h3>
         </div>
       </div>
     </div>
@@ -173,7 +172,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="card mb-3">
         <div class="card-header text-white bg-success">Recovered</div>
         <div class="card-body">
-          <h3 class="card-title" id="recovered">{{ france_recovered }}</h3>
+          <h3 class="card-title" id="recovered">{{ france_recovered| intcomma  }}</h3>
         </div>
       </div>
     </div>

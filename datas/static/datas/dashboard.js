@@ -1,3 +1,10 @@
+function thousands_separators(num)
+  {
+    var num_parts = num.toString().split(".");
+    num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return num_parts.join(".");
+  }
+
 $(document).ready(function(){
     $("#post-form-list").change(function(){
         $.ajax({
@@ -20,7 +27,7 @@ $(document).ready(function(){
                         duration: 2000,
                         easing: 'swing',
                         step: function (now) {
-                            $(this).text(commaSeparateNumberMath.ceil(now)));
+                            $(this).text(thousands_separators(Math.ceil(now)));
                         }
                     });
                 });
@@ -33,7 +40,7 @@ $(document).ready(function(){
                         duration: 2000,
                         easing: 'swing',
                         step: function (now) {
-                            $(this).text(Math.ceil(now));
+                            $(this).text(thousands_separators(Math.ceil(now)));
                         }
                     });
                 });
@@ -59,7 +66,7 @@ $(document).ready(function(){
                         duration: 2000,
                         easing: 'swing',
                         step: function (now) {
-                            $(this).text(Math.ceil(now));
+                            $(this).text(thousands_separators(Math.ceil(now)));
                         }
                     });
                 });
