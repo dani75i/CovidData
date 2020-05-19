@@ -42,6 +42,8 @@ def get_value_covid_by_country(request):
         france_deaths_list = histogramme[2]
         france_last_day_deaths = histogramme[4]
 
+        summary = tableau()
+
     return render(request, 'datas/home.html',
                   {"form": form,
                    "france_confirmed": france_confirmed,
@@ -51,6 +53,7 @@ def get_value_covid_by_country(request):
                    "france_deaths_list": france_deaths_list,
                    "france_last_day_deaths": france_last_day_deaths,
                    "france_death_rate": france_death_rate,
+                   "summary": tableau(),
                    })
 
 
@@ -98,6 +101,8 @@ def get_value_covid_by_country_dashboard(request):
         world_deaths = world["deaths"]
         world_recovered = world["recovered"]
 
+        summary = tableau()
+
     return render(request, 'datas/dashboard.html',
                   {"form": form,
                    "france_confirmed": france_confirmed,
@@ -110,4 +115,5 @@ def get_value_covid_by_country_dashboard(request):
                    "world_confirmed": world_confirmed,
                    "world_deaths": world_deaths,
                    "world_recovered": world_recovered,
+                   "summary": tableau(),
                    })

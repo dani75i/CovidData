@@ -5,6 +5,9 @@ function thousands_separators(num)
     return num_parts.join(".");
   }
 
+
+
+
 $(document).ready(function(){
     $("#post-form-list").change(function(){
         $.ajax({

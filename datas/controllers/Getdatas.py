@@ -67,7 +67,6 @@ def postman_get_data_from_beginning(country):
     print(list_dates)
     print(len(list_dates))
 
-
     return list_dates, list_confirmed, list_deaths_not_cumulated, \
            list_recovered, number_deaths_last_day
 
@@ -100,4 +99,11 @@ def postman_get_data_by_countries(country):
     return information
 
 
-# print(postman_get_data_from_beginning("france"))
+def tableau():
+    summary = []
+    url = "https://api.covid19api.com/summary"
+    response = requests.get(url=url).json()
+    for country in response["Countries"]:
+        summary.append(country)
+    return summary
+
