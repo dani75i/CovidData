@@ -6,7 +6,7 @@ $(document).ready(function(){
         $("#p1").empty();
         $.ajax({
             type:'POST',
-            url:'',
+            url:'test',
             data:{
                 country:$('#post-form-list :selected').text(),
                 csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),

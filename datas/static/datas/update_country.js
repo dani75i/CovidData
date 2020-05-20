@@ -2,7 +2,7 @@ $(document).ready(function(){
     $("#post-form-list").change(function(){
         $.ajax({
             type:'POST',
-            url:'',
+            url:'test',
             data:{
                 country:$('#post-form-list :selected').text(),
                 csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
