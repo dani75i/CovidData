@@ -53,7 +53,13 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <!-- Top container -->
 <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
   <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i> </button>
-  <h3 class="w3-bar-item w3-left" style="font-weight:bold">COVID-19 DATA</h3>
+  <h3 class="w3-bar-item w3-left" style="font-weight:bold">COVID-19 DATA &ensp;
+  <a href="https://www.buymeacoffee.com/danielpy">
+    <img src="{% static 'datas/images/buy.jpg' %}" class="w3-circle w3-margin-right" style="width:46px">
+  </a>
+    </h3>
+
+
   <br>
 </div>
 
@@ -221,7 +227,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <br>
   <div class="container">
-    <div class="table-responsive">
   <table id="example" class="table table-hover table-curved">
   <thead class="thead-dark">
     <tr>
@@ -242,7 +247,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   {% endfor %}
   </tbody>
 </table>
-      </div>
+
   </div>
 
   <br>
