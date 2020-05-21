@@ -93,10 +93,10 @@ def get_value_covid_by_country_dashboard(request):
             france_recovered = result["recovered"]
             france_death_rate = result["death_rate"]
 
-            # histogramme = postman_get_data_from_beginning("France")
-            # france_dates_list = histogramme[0]
-            # france_deaths_list = histogramme[2]
-            # france_last_day_deaths = histogramme[4]
+            histogramme = postman_get_data_from_beginning("France")
+            france_dates_list = histogramme[0]
+            france_deaths_list = histogramme[2]
+            france_last_day_deaths = histogramme[4]
 
             world = get_world_datas()
             world_confirmed = world["confirmed"]
@@ -110,9 +110,9 @@ def get_value_covid_by_country_dashboard(request):
                            "france_confirmed": france_confirmed,
                            "france_deaths": france_deaths,
                            "france_recovered": france_recovered,
-                           # "france_dates_list": france_dates_list,
-                           # "france_deaths_list": france_deaths_list,
-                           # "france_last_day_deaths": france_last_day_deaths,
+                           "france_dates_list": france_dates_list,
+                           "france_deaths_list": france_deaths_list,
+                           "france_last_day_deaths": france_last_day_deaths,
                            "france_death_rate": france_death_rate,
                            "world_confirmed": world_confirmed,
                            "world_deaths": world_deaths,
