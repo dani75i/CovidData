@@ -64,9 +64,6 @@ def postman_get_data_from_beginning(country):
 
     number_deaths_last_day = list_deaths_not_cumulated[-1]
 
-    print(list_dates)
-    print(len(list_dates))
-
     return list_dates, list_confirmed, list_deaths_not_cumulated, \
            list_recovered, number_deaths_last_day
 
@@ -85,6 +82,7 @@ def postman_get_all_countries():
 def postman_get_data_by_countries(country):
     url = "https://api.covid19api.com/total/country/" + country
     response = requests.get(url=url).json()[-1]
+    print(response)
 
     death_rate = (int(response["Deaths"]) / int(response["Confirmed"])) * 100
     death_rate = "%.2f" % death_rate
@@ -99,11 +97,14 @@ def postman_get_data_by_countries(country):
     return information
 
 
-def tableau():
+def postman_get_world_datas():
     summary = []
     url = "https://api.covid19api.com/summary"
     response = requests.get(url=url).json()
+
     for country in response["Countries"]:
         summary.append(country)
-    return summary
 
+    return response["Global"], summary
+
+print(postman_get_data_by_countries("France"))

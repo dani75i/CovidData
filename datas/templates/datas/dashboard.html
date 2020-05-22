@@ -135,8 +135,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <div class="w3-third">
       <div class="card mb-3">
         <div class="card-header text-white bg-primary">Confirmed</div>
-        <div class="card-body">
-          <h4 class="card-title">{{ world_confirmed| intcomma }}</h4>
+        <div class="card-body" style="display: inline;">
+          <p class="card-title">
+            <span style="font-size:24px;">{{ world_confirmed| intcomma }}</span>
+          &nbsp;<span> (+ {{ world_new_confirmed| intcomma }} )</span>
+          </p>
         </div>
       </div>
     </div>
@@ -144,7 +147,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="card mb-3">
         <div class="card-header text-white bg-danger">Deaths</div>
         <div class="card-body">
-          <h4 class="card-title">{{ world_deaths| intcomma  }}</h4>
+          <p class="card-title">
+            <span style="font-size:24px;">{{ world_deaths| intcomma }}</span>
+          &nbsp;<span> (+ {{ world_new_deaths| intcomma }} )</span>
+          </p>
         </div>
       </div>
     </div>
@@ -152,7 +158,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="card mb-3">
         <div class="card-header text-white bg-success">Recovered</div>
         <div class="card-body">
-          <h4 class="card-title">{{ world_recovered| intcomma  }}</h4>
+          <p class="card-title">
+            <span style="font-size:24px;">{{ world_recovered| intcomma }}</span>
+          &nbsp;<span> (+ {{ world_new_recovered| intcomma }} )</span>
+          </p>
         </div>
       </div>
     </div>
@@ -227,13 +236,13 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <br>
   <div class="container">
-  <table id="example" class="table table-hover table-curved">
+  <table id="example" class="table table-hover table-responsive">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Country</th>
       <th scope="col">Confirmed</th>
       <th scope="col">Deaths</th>
-      <!--<th scope="col">Recovered</th>-->
+      <th scope="col">Recovered</th>
     </tr>
   </thead>
   <tbody>
@@ -242,7 +251,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <th scope="row">{{ athlete.Country }}</th>
       <td>{{ athlete.TotalConfirmed| intcomma }} </td>
       <td>{{ athlete.TotalDeaths| intcomma }}</td>
-      <!--<td>{{ athlete.TotalRecovered| intcomma }}</td>-->
+      <td>{{ athlete.TotalRecovered| intcomma }}</td>
     </tr>
   {% endfor %}
   </tbody>
@@ -297,95 +306,95 @@ function w3_close() {
       "order": [[ 1, "desc" ]]
     });
 
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
-      type: 'bar',
-      options: {
-        responsive: true,
-        maintainAspectRatio:false,
-        title: {
-            display: true,
-            text: 'Confirmed vs Deaths vs Recovered',
-            fontSize: 15,
-            fontColor: "#111"
-        },
+    <!--var ctx = document.getElementById("myChart");-->
+    <!--var myChart = new Chart(ctx, {-->
+      <!--type: 'bar',-->
+      <!--options: {-->
+        <!--responsive: true,-->
+        <!--maintainAspectRatio:false,-->
+        <!--title: {-->
+            <!--display: true,-->
+            <!--text: 'Confirmed vs Deaths vs Recovered',-->
+            <!--fontSize: 15,-->
+            <!--fontColor: "#111"-->
+        <!--},-->
 
-    },
-      data: {
-          labels: [],
-          datasets: [
-          {
-              label: 'Confirmed',
-              backgroundColor: ["blue"],
-              data: [
-              {{ france_confirmed }}]
-           },
-           {
-              label: 'Deaths',
-              backgroundColor: ["red"],
-              data: [
-              {{ france_deaths }}]
-           },
-           {
-              label: 'Recovered',
-              backgroundColor: ["green"],
-              data: [
-              {{ france_recovered }}]
-           }
-          ]
-      }
-    })
+    <!--},-->
+      <!--data: {-->
+          <!--labels: [],-->
+          <!--datasets: [-->
+          <!--{-->
+              <!--label: 'Confirmed',-->
+              <!--backgroundColor: ["blue"],-->
+              <!--data: [-->
+              <!--{{ france_confirmed }}]-->
+           <!--},-->
+           <!--{-->
+              <!--label: 'Deaths',-->
+              <!--backgroundColor: ["red"],-->
+              <!--data: [-->
+              <!--{{ france_deaths }}]-->
+           <!--},-->
+           <!--{-->
+              <!--label: 'Recovered',-->
+              <!--backgroundColor: ["green"],-->
+              <!--data: [-->
+              <!--{{ france_recovered }}]-->
+           <!--}-->
+          <!--]-->
+      <!--}-->
+    <!--})-->
 
-    var ctx = document.getElementById("myChart2");
-    var myChart = new Chart(ctx, {
-      type: 'line',
-      options: {
-           responsive: true,
-            maintainAspectRatio:false,
-            title: {
-                display: true,
-                text: 'Deaths / day',
-                fontSize: 15,
-                fontColor: "#111"
-                }
-            },
-      data: {
-          labels: {{ france_dates_list|safe }},
-          datasets: [
-           {
-              label: 'Deaths',
-              backgroundColor: ["red"],
-              data: {{ france_deaths_list }}
-           },
-          ]
-      }
-    })
+    <!--var ctx = document.getElementById("myChart2");-->
+    <!--var myChart = new Chart(ctx, {-->
+      <!--type: 'line',-->
+      <!--options: {-->
+           <!--responsive: true,-->
+            <!--maintainAspectRatio:false,-->
+            <!--title: {-->
+                <!--display: true,-->
+                <!--text: 'Deaths / day',-->
+                <!--fontSize: 15,-->
+                <!--fontColor: "#111"-->
+                <!--}-->
+            <!--},-->
+      <!--data: {-->
+          <!--labels: {{ france_dates_list|safe }},-->
+          <!--datasets: [-->
+           <!--{-->
+              <!--label: 'Deaths',-->
+              <!--backgroundColor: ["red"],-->
+              <!--data: {{ france_deaths_list }}-->
+           <!--},-->
+          <!--]-->
+      <!--}-->
+    <!--})-->
 
-    var ctx = document.getElementById("myChart3");
-    var myChart = new Chart(ctx, {
-      type: 'doughnut',
-      options: {
-            title: {
-      display: true,
-      position: "top",
-      text: {{ france_death_rate }}+ " %",
-      fontSize: 15,
-      fontColor: "#111"
-    },
-           responsive: true,
-            maintainAspectRatio:false,
-            },
-      data: {
-          labels: ["Mortality Rate"],
-          datasets: [
-           {
-              label: 'Deaths',
-              backgroundColor: ["red"],
-              data: [{{ france_death_rate }}, 100 - {{ france_death_rate }}]
-           },
-          ]
-      }
-    })
+    <!--var ctx = document.getElementById("myChart3");-->
+    <!--var myChart = new Chart(ctx, {-->
+      <!--type: 'doughnut',-->
+      <!--options: {-->
+            <!--title: {-->
+      <!--display: true,-->
+      <!--position: "top",-->
+      <!--text: {{ france_death_rate }}+ " %",-->
+      <!--fontSize: 15,-->
+      <!--fontColor: "#111"-->
+    <!--},-->
+           <!--responsive: true,-->
+            <!--maintainAspectRatio:false,-->
+            <!--},-->
+      <!--data: {-->
+          <!--labels: ["Mortality Rate"],-->
+          <!--datasets: [-->
+           <!--{-->
+              <!--label: 'Deaths',-->
+              <!--backgroundColor: ["red"],-->
+              <!--data: [{{ france_death_rate }}, 100 - {{ france_death_rate }}]-->
+           <!--},-->
+          <!--]-->
+      <!--}-->
+    <!--})-->
 </script>
 
 </body>

@@ -93,31 +93,36 @@ def get_value_covid_by_country_dashboard(request):
             france_recovered = result["recovered"]
             france_death_rate = result["death_rate"]
 
-            histogramme = postman_get_data_from_beginning("France")
-            france_dates_list = histogramme[0]
-            france_deaths_list = histogramme[2]
-            france_last_day_deaths = histogramme[4]
+            # histogramme = postman_get_data_from_beginning("France")
+            # france_dates_list = histogramme[0]
+            # france_deaths_list = histogramme[2]
+            # france_last_day_deaths = histogramme[4]
 
-            world = get_world_datas()
-            world_confirmed = world["confirmed"]
-            world_deaths = world["deaths"]
-            world_recovered = world["recovered"]
+            world = postman_get_world_datas()[0]
+            world_confirmed = world["TotalConfirmed"]
+            world_deaths = world["TotalDeaths"]
+            world_recovered = world["TotalRecovered"]
+            word_new_confirmed = world["NewConfirmed"]
+            word_new_deaths = world["NewDeaths"]
+            word_new_recovered = world["NewRecovered"]
 
-            summary = tableau()
+            # summary = tableau()
+            summary = postman_get_world_datas()[1]
+
 
             return render(request, 'datas/dashboard.html',
                           {"form": form,
                            "france_confirmed": france_confirmed,
                            "france_deaths": france_deaths,
                            "france_recovered": france_recovered,
-                           "france_dates_list": france_dates_list,
-                           "france_deaths_list": france_deaths_list,
-                           "france_last_day_deaths": france_last_day_deaths,
                            "france_death_rate": france_death_rate,
                            "world_confirmed": world_confirmed,
                            "world_deaths": world_deaths,
                            "world_recovered": world_recovered,
-                           "summary": tableau(),
+                           "world_new_confirmed": word_new_confirmed,
+                           "world_new_deaths": word_new_deaths,
+                           "world_new_recovered": word_new_recovered,
+                           "summary": summary,
                            })
         except:
 
