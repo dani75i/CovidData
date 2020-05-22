@@ -35,6 +35,20 @@ $(document).ready(function(){
                     });
                 });
 
+                $("#last_day_confirmed").text(json.france_last_day_confirmed);
+                $("#last_day_confirmed").each(function () {
+                    $(this).prop('Counter',0).animate({
+                        Counter: $(this).text()
+                    }, {
+                        duration: 2000,
+                        easing: 'swing',
+                        step: function (now) {
+                            $(this).text(Math.ceil(now));
+                        }
+                    });
+                });
+
+
                 $("#deaths").text(json.deaths);
                 $("#deaths").each(function () {
                     $(this).prop('Counter',0).animate({
@@ -70,6 +84,19 @@ $(document).ready(function(){
                         easing: 'swing',
                         step: function (now) {
                             $(this).text(thousands_separators(Math.ceil(now)));
+                        }
+                    });
+                });
+
+                $("#last_day_recovered").text(json.france_last_day_recovered);
+                $("#last_day_recovered").each(function () {
+                    $(this).prop('Counter',0).animate({
+                        Counter: $(this).text()
+                    }, {
+                        duration: 2000,
+                        easing: 'swing',
+                        step: function (now) {
+                            $(this).text(Math.ceil(now));
                         }
                     });
                 });

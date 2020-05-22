@@ -191,7 +191,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="card mb-3">
         <div class="card-header text-white bg-primary">Confirmed</div>
         <div class="card-body" style="text-align:left">
-          <h4 class="card-title" id="confirmed">{{ france_confirmed| intcomma  }}</h4>
+          <p class="card-title">
+            <span id="confirmed" style="font-size:24px;">{{ france_confirmed| intcomma }}</span>
+          &nbsp;(+<span id="last_day_confirmed">  {{ france_last_day_confirmed| intcomma }} </span>)
+          </p>
         </div>
       </div>
     </div>
@@ -199,7 +202,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="card mb-3">
         <div class="card-header text-white bg-danger">Deaths</div>
         <div class="card-body">
-          <h4 class="card-title" id="deaths">{{ france_deaths| intcomma  }}</h4>
+          <p class="card-title">
+            <span id="deaths" style="font-size:24px;">{{ france_deaths| intcomma }}</span>
+          &nbsp;(+<span id="last_day_deaths">  {{ france_last_day_deaths| intcomma }} </span>)
+          </p>
         </div>
       </div>
     </div>
@@ -207,7 +213,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="card mb-3">
         <div class="card-header text-white bg-success">Recovered</div>
         <div class="card-body">
-          <h4 class="card-title" id="recovered">{{ france_recovered| intcomma  }}</h4>
+          <!--<h4 class="card-title" id="recovered">{{ france_recovered| intcomma  }}</h4>-->
+          <p class="card-title">
+            <span id="recovered" style="font-size:24px;">{{ france_recovered| intcomma }}</span>
+          &nbsp;(+<span id="last_day_recovered">  {{ france_last_day_recovered| intcomma }} </span>)
+          </p>
         </div>
       </div>
     </div>
@@ -236,13 +246,13 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <br>
   <div class="container">
-  <table id="example" class="table table-hover table-responsive">
+  <table id="example" class="table table-hover">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Country</th>
       <th scope="col">Confirmed</th>
       <th scope="col">Deaths</th>
-      <th scope="col">Recovered</th>
+      <!--<th scope="col">Recovered</th>-->
     </tr>
   </thead>
   <tbody>
@@ -251,7 +261,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <th scope="row">{{ athlete.Country }}</th>
       <td>{{ athlete.TotalConfirmed| intcomma }} </td>
       <td>{{ athlete.TotalDeaths| intcomma }}</td>
-      <td>{{ athlete.TotalRecovered| intcomma }}</td>
+      <!--<td>{{ athlete.TotalRecovered| intcomma }}</td>-->
     </tr>
   {% endfor %}
   </tbody>

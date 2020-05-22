@@ -42,7 +42,6 @@ def get_value_covid_by_country(request):
         # france_deaths_list = histogramme[2]
         # france_last_day_deaths = histogramme[4]
 
-        summary = tableau()
 
     return render(request, 'datas/home.html',
                   {"form": form,
@@ -53,7 +52,6 @@ def get_value_covid_by_country(request):
                    # "france_deaths_list": france_deaths_list,
                    # "france_last_day_deaths": france_last_day_deaths,
                    "france_death_rate": france_death_rate,
-                   "summary": tableau(),
                    })
 
 
@@ -79,6 +77,8 @@ def get_value_covid_by_country_dashboard(request):
             response_data["list_deaths"] = histogramme[2]
             response_data["list_recovered"] = histogramme[3]
             response_data["france_last_day_deaths"] = histogramme[4]
+            response_data["france_last_day_confirmed"] = histogramme[5]
+            response_data["france_last_day_recovered"] = histogramme[6]
 
             return JsonResponse(response_data)
 
@@ -93,10 +93,10 @@ def get_value_covid_by_country_dashboard(request):
             france_recovered = result["recovered"]
             france_death_rate = result["death_rate"]
 
-            # histogramme = postman_get_data_from_beginning("France")
-            # france_dates_list = histogramme[0]
-            # france_deaths_list = histogramme[2]
-            # france_last_day_deaths = histogramme[4]
+            histogramme = postman_get_data_from_beginning("France")
+            france_last_day_deaths = histogramme[4]
+            france_last_day_confirmed = histogramme[5]
+            france_last_day_recovered = histogramme[6]
 
             world = postman_get_world_datas()[0]
             world_confirmed = world["TotalConfirmed"]
@@ -123,6 +123,9 @@ def get_value_covid_by_country_dashboard(request):
                            "world_new_deaths": word_new_deaths,
                            "world_new_recovered": word_new_recovered,
                            "summary": summary,
+                           "france_last_day_deaths": france_last_day_deaths,
+                           "france_last_day_confirmed": france_last_day_confirmed,
+                           "france_last_day_recovered": france_last_day_recovered,
                            })
         except:
 
