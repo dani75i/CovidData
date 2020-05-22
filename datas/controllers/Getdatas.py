@@ -57,13 +57,6 @@ def postman_get_data_from_beginning(country):
     for case in response_recovered:
         list_recovered.append(case["Cases"])
 
-    list_recovered_not_cumulated = []
-    for case in range(len(list_deaths) - 1):
-        list_recovered_not_cumulated.append(list_recovered[case + 1] - list_recovered[case])
-    list_recovered_not_cumulated.insert(0, 0)
-
-    number_recovered_last_day = list_recovered_not_cumulated[-1]
-
     list_confirmed_not_cumulated = []
     for case in range(len(list_deaths) - 1):
         list_confirmed_not_cumulated.append(list_confirmed[case + 1] - list_confirmed[case])
@@ -78,9 +71,16 @@ def postman_get_data_from_beginning(country):
 
     number_deaths_last_day = list_deaths_not_cumulated[-1]
 
+    list_recovered_not_cumulated = []
+    for case in range(len(list_deaths) - 1):
+        list_recovered_not_cumulated.append(list_recovered[case + 1] - list_recovered[case])
+    list_recovered_not_cumulated.insert(0, 0)
+
+    number_recovered_last_day = list_recovered_not_cumulated[-1]
+
 
     return list_dates, list_confirmed, list_deaths_not_cumulated, \
-           list_recovered, number_deaths_last_day, number_confirmed_last_day, number_confirmed_last_day
+           list_recovered, number_deaths_last_day, number_confirmed_last_day, number_recovered_last_day
 
 
 def postman_get_all_countries():
