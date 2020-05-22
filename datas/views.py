@@ -66,10 +66,9 @@ def get_value_covid_by_country_dashboard(request):
             result = postman_get_data_by_countries(country)
             response_data['confirmed'] = result["confirmed"]
             response_data['deaths'] = result["deaths"]
-            print(result["deaths"])
             response_data['recovered'] = result["recovered"]
-            print(result["recovered"])
             response_data['death_rate'] = result["death_rate"]
+            response_data['recovered_rate'] = result["recovered_rate"]
 
             histogramme = postman_get_data_from_beginning(country)
             response_data["list_dates"] = histogramme[0]
@@ -92,6 +91,7 @@ def get_value_covid_by_country_dashboard(request):
             france_deaths = result["deaths"]
             france_recovered = result["recovered"]
             france_death_rate = result["death_rate"]
+            france_recovered_rate = result["recovered_rate"]
 
             histogramme = postman_get_data_from_beginning("France")
             france_last_day_deaths = histogramme[4]
@@ -116,6 +116,7 @@ def get_value_covid_by_country_dashboard(request):
                            "france_deaths": france_deaths,
                            "france_recovered": france_recovered,
                            "france_death_rate": france_death_rate,
+                           "france_recovered_rate": france_recovered_rate,
                            "world_confirmed": world_confirmed,
                            "world_deaths": world_deaths,
                            "world_recovered": world_recovered,

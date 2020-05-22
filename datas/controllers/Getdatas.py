@@ -102,11 +102,15 @@ def postman_get_data_by_countries(country):
     death_rate = (int(response["Deaths"]) / int(response["Confirmed"])) * 100
     death_rate = "%.2f" % death_rate
 
+    recovered_rate = (int(response["Recovered"]) / int(response["Confirmed"])) * 100
+    recovered_rate = "%.2f" % recovered_rate
+
     information = {
         "confirmed": response["Confirmed"],
         "recovered": response["Recovered"],
         "deaths": response["Deaths"],
         "death_rate": death_rate,
+        "recovered_rate": recovered_rate,
     }
 
     return information
@@ -121,5 +125,3 @@ def postman_get_world_datas():
         summary.append(country)
 
     return response["Global"], summary
-
-print(postman_get_data_by_countries("France"))

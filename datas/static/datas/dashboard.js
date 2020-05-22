@@ -101,66 +101,8 @@ $(document).ready(function(){
                     });
                 });
 
+
                 var ctx = document.getElementById("myChart");
-                var myChart = new Chart(ctx, {
-                  type: 'bar',
-                  options: {
-                        title: {
-                            display: true,
-                            text: 'Confirmed vs Deaths vs Recovered',
-                            fontSize: 15,
-                            fontColor: "#111"
-                        }
-                    },
-                  data: {
-                      labels: [],
-                      datasets: [
-                      {
-                          label: 'Confirmed',
-                          backgroundColor: ["blue"],
-                          data: [
-                          json.confirmed]
-                       },
-                       {
-                          label: 'Deaths',
-                          backgroundColor: ["red"],
-                          data: [
-                          json.deaths]
-                       },
-                       {
-                          label: 'Recovered',
-                          backgroundColor: ["green"],
-                          data: [
-                          json.recovered]
-                       }
-                      ]
-                  }
-                })
-
-                var ctx = document.getElementById("myChart2");
-                var myChart = new Chart(ctx, {
-                  type: 'line',
-                  options: {
-                        title: {
-                            display: true,
-                            text: 'New deaths',
-                            fontSize: 15,
-                            fontColor: "#111"
-                        }
-                    },
-                  data: {
-                      labels: json.list_dates,
-                      datasets: [
-                       {
-                          label: 'Deaths',
-                          backgroundColor: ["red"],
-                          data: json.list_deaths
-                       },
-                      ]
-                  }
-                })
-
-                var ctx = document.getElementById("myChart3");
                 var myChart = new Chart(ctx, {
                   type: 'doughnut',
                   options: {
@@ -175,7 +117,7 @@ $(document).ready(function(){
                         maintainAspectRatio:false,
                         },
                   data: {
-                      labels: ["Mortality Rate"],
+                      labels: ["Mortality"],
                       datasets: [
                        {
                           label: 'Deaths',
@@ -186,7 +128,32 @@ $(document).ready(function(){
                   }
                 })
 
-                $("html").scrollTop(166)
+                var ctx = document.getElementById("myChart2");
+                var myChart = new Chart(ctx, {
+                  type: 'doughnut',
+                  options: {
+                        title: {
+                  display: true,
+                  position: "top",
+                  text: json.recovered_rate + " %",
+                  fontSize: 15,
+                  fontColor: "#111"
+                },
+                       responsive: true,
+                        maintainAspectRatio:false,
+                        },
+                  data: {
+                      labels: ["Recovered"],
+                      datasets: [
+                       {
+                          label: 'Deaths',
+                          backgroundColor: ["green"],
+                          data: [json.recovered_rate,100 - json.recovered_rate]
+                       },
+                      ]
+                  }
+                })
+
             }
         })
         })
