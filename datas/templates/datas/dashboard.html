@@ -143,10 +143,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <div class="w3-row-padding w3-margin-bottom">
     <div class="w3-third">
       <div class="card mb-3">
-        <div class="card-header text-white bg-primary">Confirmed</div>
+        <div class="card-header text-white bg-primary" style="font-weight:bold;">Confirmed</div>
         <div class="card-body" style="display: inline;">
           <p class="card-title">
-            <span style="font-size:24px;">{{ world_confirmed| intcomma }}</span>
+            <span style="font-size:24px; font-weight:bold; color:#058AFF;">{{ world_confirmed| intcomma }}</span>
           &nbsp;<span> (+ {{ world_new_confirmed| intcomma }} )</span>
           </p>
         </div>
@@ -154,10 +154,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </div>
     <div class="w3-third">
       <div class="card mb-3">
-        <div class="card-header text-white bg-danger">Deaths</div>
+        <div class="card-header text-white bg-danger" style="font-weight:bold;">Deaths</div>
         <div class="card-body">
           <p class="card-title">
-            <span style="font-size:24px;">{{ world_deaths| intcomma }}</span>
+            <span style="font-size:24px;font-weight:bold;  color:#E3202A;">{{ world_deaths| intcomma }}</span>
           &nbsp;<span> (+ {{ world_new_deaths| intcomma }} )</span>
           </p>
         </div>
@@ -165,10 +165,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </div>
     <div class="w3-third">
       <div class="card mb-3">
-        <div class="card-header text-white bg-success">Recovered</div>
+        <div class="card-header text-white bg-success" style="font-weight:bold;">Recovered</div>
         <div class="card-body">
           <p class="card-title">
-            <span style="font-size:24px;">{{ world_recovered| intcomma }}</span>
+            <span style="font-size:24px; font-weight:bold; color:#318B08;">{{ world_recovered| intcomma }}</span>
           &nbsp;<span> (+ {{ world_new_recovered| intcomma }} )</span>
           </p>
         </div>
@@ -198,10 +198,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <div class="w3-row-padding w3-margin-bottom">
     <div class="w3-third">
       <div class="card mb-3">
-        <div class="card-header text-white bg-primary">Confirmed</div>
+        <div class="card-header text-white bg-primary" style="font-weight:bold;">Confirmed</div>
         <div class="card-body" style="text-align:left">
           <p class="card-title">
-            <span id="confirmed" style="font-size:24px;">{{ france_confirmed| intcomma }}</span>
+            <span id="confirmed" style="font-size:24px; font-weight:bold; color:#058AFF;">{{ france_confirmed| intcomma }}</span>
           &nbsp;(+<span id="last_day_confirmed">  {{ france_last_day_confirmed| intcomma }} </span>)
           </p>
         </div>
@@ -209,10 +209,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </div>
     <div class="w3-third">
       <div class="card mb-3">
-        <div class="card-header text-white bg-danger">Deaths</div>
+        <div class="card-header text-white bg-danger" style="font-weight:bold;">Deaths</div>
         <div class="card-body">
           <p class="card-title">
-            <span id="deaths" style="font-size:24px;">{{ france_deaths| intcomma }}</span>
+            <span id="deaths" style="font-size:24px; font-weight:bold;  color:#E3202A;">{{ france_deaths| intcomma }}</span>
           &nbsp;(+<span id="last_day_deaths">  {{ france_last_day_deaths| intcomma }} </span>)
           </p>
         </div>
@@ -220,10 +220,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </div>
     <div class="w3-third">
       <div class="card mb-3">
-        <div class="card-header text-white bg-success">Recovered</div>
+        <div class="card-header text-white bg-success" style="font-weight:bold;">Recovered</div>
         <div class="card-body">
           <p class="card-title">
-            <span id="recovered" style="font-size:24px;">{{ france_recovered| intcomma }}</span>
+            <span id="recovered" style="font-size:24px; font-weight:bold; color:#318B08;">{{ france_recovered| intcomma }}</span>
           &nbsp;(+<span id="last_day_recovered">  {{ france_last_day_recovered| intcomma }} </span>)
           </p>
         </div>
@@ -266,7 +266,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <tbody>
   {% for athlete in summary %}
     <tr>
-      <th scope="row">{{ athlete.Country }}</th>
+      <td >{{ athlete.Country }}</td>
       <td style="color:#058AFF; font-weight:bold">{{ athlete.TotalConfirmed| intcomma }} </td>
       <td style="color:#E3202A; font-weight:bold">{{ athlete.TotalDeaths| intcomma }}</td>
       <td style="color:#318B08; font-weight:bold">{{ athlete.TotalRecovered| intcomma }}</td>
@@ -374,7 +374,8 @@ function w3_close() {
 }
 
     $('#example').DataTable({
-      "order": [[ 1, "desc" ]]
+      "order": [[ 1, "desc" ]],
+    "searching": false,
     });
 
     $('.dataTables_length').addClass('bs-select');
